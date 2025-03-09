@@ -1,7 +1,61 @@
 import { Component } from "react";
 
 class MovieCard extends Component{
+    constructor(){
+        super();
+        this.state={
+            title:"The Avengers",
+            plot:"SuperNatural powers shown in the Movie",
+            price: 199,
+            rating: 8.9,
+            stars:0
+        }
+    }
+    addStars=()=>{
+     //form 1
+    //  this.setState({
+    //     stars:this.state.stars+0.5
+    //  });
+  if(this.state.stars>=5){
+    return;
+  }
+     //second form
+     this.setState((prevState)=>{
+        return{
+            stars:prevState.stars+0.5
+        }
+     });
+
+     this.setState((prevState)=>{
+        return{
+            stars:prevState.stars+0.5
+        }
+     });
+
+     this.setState((prevState)=>{
+        return{
+            stars:prevState.stars+0.5
+        }
+     });
+      console.log("stars:",this.state.stars);
+    }
+ decStars=()=>{
+    if(this.state.stars<=0){
+        return;
+    }
+    this.setState((prevState)=>{
+        return{
+            stars:prevState.stars-0.5
+        }
+    });
+ }
+
+
+
+
     render(){
+        console.log("component is rendered")
+        const{title,plot,price,rating,stars}= this.state;
         return(
          <div className="main">
             <div className="movie-card">
@@ -12,13 +66,29 @@ class MovieCard extends Component{
                  </div>
 
                  <div className="right">
-                    <div className="title">The Avengers</div>
-                    <div className="plot">SuperNatural powers shown in the Movie</div>
-                    <div className="price">RS. 199</div>
+                    <div className="title">{title}</div>
+                    <div className="plot">{plot}</div>
+                    <div className="price">{price}</div>
 
                     <div className="footer">
-                        <div className="rating">8.9</div>
-                        <div className="star-dis">star</div>
+                        <div className="rating">{rating}</div>
+                        <div className="star-dis">
+                    <img  className="str-btn" 
+                    alt="decrease" 
+                    src="https://cdn-icons-png.flaticon.com/128/565/565332.png"
+                    onClick={this.decStars}/>
+
+                     <img alt="star"
+                     src="https://cdn-icons-png.flaticon.com/128/1828/1828884.png"
+                     className="stars"/>
+
+                     <img  className="str-btn"
+                      alt="increase"
+                     src="https://cdn-icons-png.flaticon.com/128/748/748113.png"
+                     onClick={this.addStars}
+                     />
+                     <span>{stars}</span>
+                        </div>
                         <div className="favourite-btn">Favourite</div>
                         <div className="cart-btn">Add to Cart</div>
                     </div>
