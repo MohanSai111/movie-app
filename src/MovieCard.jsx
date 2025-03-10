@@ -1,69 +1,11 @@
 import { Component } from "react";
 
 class MovieCard extends Component{
-    constructor(){
-        super();
-        this.state={
-            title:"The Avengers",
-            plot:"SuperNatural powers shown in the Movie",
-            price: 199,
-            rating: 8.9,
-            stars:0,
-            fav:true,
-            isIncart: false
-        }
-    }
-    addStars=()=>{
-     //form 1
-    //  this.setState({
-    //     stars:this.state.stars+0.5
-    //  });
-  if(this.state.stars>=5){
-    return;
-  }
-     //second form
-     this.setState((prevState)=>{
-        return{
-            stars:prevState.stars+0.5
-        }
-     });
-
-     this.setState((prevState)=>{
-        return{
-            stars:prevState.stars+0.5
-        }
-     });
-
-     this.setState((prevState)=>{
-        return{
-            stars:prevState.stars+0.5
-        }
-     });
-      console.log("stars:",this.state.stars);
-    }
- decStars=()=>{
-    if(this.state.stars<=0){
-        return;
-    }
-    this.setState((prevState)=>{
-        return{
-            stars:prevState.stars-0.5
-        }
-    });
- }
- handleFav=()=>{
-    this.setState({
-        fav:!this.state.fav
-    })
- }
- handleAddToCart=()=>{
-    this.setState({
-        isIncart: !this.state.isIncart
-    })
- }
+   
+    
     render(){
-        console.log("component is rendered")
-        const{title,plot,price,rating,stars}= this.state;
+        console.log(this.props)
+        const{title,plot,price,rating,stars,fav,isIncart}= this.props.movies;
         return(
          <div className="main">
             <div className="movie-card">
@@ -99,10 +41,10 @@ class MovieCard extends Component{
                         </div>
     
                        
-                         {this.state.fav?<button className="unfavourite-btn" onClick={this.handleFav}>Un-favourite</button>
+                         {this.props.fav?<button className="unfavourite-btn" onClick={this.handleFav}>Un-favourite</button>
                          :<button className="favourite-btn" onClick={this.handleFav}>Favourite</button>}
                 
-                        {this.state.isIncart?<button className="unfavourite-btn" onClick={this.handleAddToCart}>Remove from Cart</button>
+                        {this.props.isIncart?<button className="unfavourite-btn" onClick={this.handleAddToCart}>Remove from Cart</button>
                         :<button className="cart-btn" onClick={this.handleAddToCart}>Add to Cart</button>
 
                         }
