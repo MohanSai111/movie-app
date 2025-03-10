@@ -8,7 +8,8 @@ class MovieCard extends Component{
             plot:"SuperNatural powers shown in the Movie",
             price: 199,
             rating: 8.9,
-            stars:0
+            stars:0,
+            fav:true
         }
     }
     addStars=()=>{
@@ -49,9 +50,11 @@ class MovieCard extends Component{
         }
     });
  }
-
-
-
+ handleFav=()=>{
+    this.setState({
+        fav:!this.state.fav
+    })
+ }
 
     render(){
         console.log("component is rendered")
@@ -89,7 +92,17 @@ class MovieCard extends Component{
                      />
                      <span>{stars}</span>
                         </div>
-                        <div className="favourite-btn">Favourite</div>
+    
+                       
+                         {this.state.fav?<button className="unfavourite-btn" onClick={this.handleFav}>Un-favourite</button>
+
+                         :<button className="favourite-btn" onClick={this.handleFav}>Favourite</button>}
+                        
+                        
+         
+
+                        
+                        
                         <div className="cart-btn">Add to Cart</div>
                     </div>
                  </div>
